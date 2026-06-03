@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zeddy Mega Global Services Ltd. | Procurement & Engineering Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628; --navy-mid: #112240; --navy-light: #1e3a5f;
+    --gold: #c8922a; --gold-light: #e8b84b; --steel: #8fa3bf;
+    --white: #f0ede6; --accent: #2a7fc8;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(10,22,40,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,146,42,0.2); transition: padding 0.3s;
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--white); text-decoration: none; line-height: 1; }
+  .logo span { color: var(--gold); }
+  .logo small { display: block; font-family: 'DM Mono', monospace; font-size: 0.5rem; letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase; margin-top: 2px; }
+  .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); text-decoration: none; transition: color 0.25s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: 0.5rem 1.4rem; border-radius: 2px; font-weight: 600; }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); }
+
+  /* HERO */
+  #home { min-height: 100vh; display: flex; align-items: center; padding: 8rem 5% 5rem; position: relative; overflow: hidden; }
+  .hero-bg-img { position: absolute; inset: 0; background: url('img05.jpg') center/cover no-repeat; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(10,22,40,0.93) 45%, rgba(10,22,40,0.55) 100%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(143,163,191,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(143,163,191,0.04) 1px,transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; max-width: 800px; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono',monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,146,42,0.35); padding: 0.4rem 1rem; border-radius: 2px; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 { font-family: 'Bebas Neue',sans-serif; font-size: clamp(3.5rem,8vw,7rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.3em; animation: fadeUp 0.9s 0.1s ease both; }
+  h1 .highlight { color: var(--gold); display: block; }
+  .hero-sub { font-size: 1.05rem; font-weight: 300; color: rgba(240,237,230,0.85); line-height: 1.8; max-width: 580px; margin: 1.5rem 0 3rem; animation: fadeUp 1s 0.2s ease both; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 1s 0.3s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--navy); font-family: 'DM Mono',monospace; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem 2.2rem; text-decoration: none; border-radius: 2px; transition: background 0.25s,transform 0.2s; border: none; cursor: pointer; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { display: inline-block; border: 1px solid rgba(143,163,191,0.4); color: var(--white); font-family: 'DM Mono',monospace; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem 2.2rem; text-decoration: none; border-radius: 2px; transition: border-color 0.25s,transform 0.2s; background: none; cursor: pointer; }
+  .btn-outline:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  section { padding: 7rem 5%; }
+  .section-tag { font-family: 'DM Mono',monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .section-title { font-family: 'Bebas Neue',sans-serif; font-size: clamp(2.2rem,5vw,3.8rem); letter-spacing: 0.03em; line-height: 1; color: var(--white); margin-bottom: 1.2rem; }
+  .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 1.5rem 0 2.5rem; }
+
+  /* CAPABILITIES */
+  #home-caps { background: var(--navy-mid); position: relative; }
+  #home-caps::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .caps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .cap-card { background: rgba(10,22,40,0.7); border: 1px solid rgba(143,163,191,0.1); border-radius: 4px; overflow: hidden; transition: border-color 0.3s,transform 0.3s; position: relative; }
+  .cap-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
+  .cap-card:hover { border-color: rgba(200,146,42,0.25); transform: translateY(-4px); }
+  .cap-card:hover::after { transform: scaleX(1); }
+  .cap-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .cap-body { padding: 1.8rem; }
+  .cap-title { font-family: 'Bebas Neue',sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.8rem; }
+  .cap-desc { font-size: 0.88rem; font-weight: 300; color: var(--steel); line-height: 1.8; }
+
+  /* ABOUT */
+  #about { background: var(--navy); position: relative; }
+  .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 5rem; }
+  .about-img-wrap { position: relative; border-radius: 4px; overflow: hidden; }
+  .about-img-wrap img.main-img { width: 100%; height: 420px; object-fit: cover; display: block; }
+  .about-img-badge { position: absolute; bottom: 1.5rem; left: 1.5rem; background: var(--gold); color: var(--navy); font-family: 'Bebas Neue',sans-serif; font-size: 1rem; letter-spacing: 0.08em; padding: 0.6rem 1.2rem; border-radius: 2px; }
+  .about-img-thumb { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 140px; height: 140px; object-fit: cover; border: 4px solid var(--navy); border-radius: 4px; }
+  .pillars { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .pillar { display: flex; gap: 1.2rem; align-items: flex-start; background: rgba(17,34,64,0.6); border: 1px solid rgba(143,163,191,0.1); border-radius: 4px; padding: 1.3rem; }
+  .pillar-icon { width: 40px; height: 40px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.3); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .pillar-title { font-family: 'DM Mono',monospace; font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .pillar-desc { font-size: 0.87rem; font-weight: 300; color: var(--steel); line-height: 1.7; }
+  .about-lower { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .triple-q { display: flex; flex-direction: column; gap: 1rem; }
+  .tq-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; background: rgba(200,146,42,0.06); border-left: 3px solid var(--gold); }
+  .tq-letter { font-family: 'Bebas Neue',sans-serif; font-size: 2.5rem; color: var(--gold); line-height: 1; flex-shrink: 0; }
+  .tq-title { font-family: 'DM Mono',monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 0.3rem; }
+  .tq-desc { font-size: 0.85rem; font-weight: 300; color: var(--steel); line-height: 1.7; }
+
+  /* SERVICES */
+  #services { background: var(--navy-mid); position: relative; }
+  #services::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(42,127,200,0.5),transparent); }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .service-card { background: rgba(10,22,40,0.7); border: 1px solid rgba(143,163,191,0.1); border-radius: 4px; overflow: hidden; transition: border-color 0.3s,transform 0.3s; position: relative; }
+  .service-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
+  .service-card:hover { border-color: rgba(200,146,42,0.25); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleY(1); }
+  .service-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .service-body { padding: 2rem; }
+  .service-num { font-family: 'Bebas Neue',sans-serif; font-size: 3rem; color: rgba(200,146,42,0.15); line-height: 1; margin-bottom: 0.5rem; }
+  .service-title { font-family: 'Bebas Neue',sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 1rem; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .service-list li { font-size: 0.84rem; font-weight: 300; color: var(--steel); line-height: 1.6; padding-left: 1rem; position: relative; }
+  .service-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+  /* OMP */
+  #omp { background: var(--navy); position: relative; }
+  .omp-hero { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(200,146,42,0.2); border-radius: 4px; overflow: hidden; margin-bottom: 4rem; position: relative; }
+  .omp-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,var(--gold),var(--accent)); z-index: 1; }
+  .omp-hero-img { width: 100%; min-height: 340px; object-fit: cover; display: block; }
+  .omp-hero-text { background: linear-gradient(135deg,rgba(17,34,64,0.98),rgba(10,22,40,1)); padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+  .omp-logo-wrap { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
+  .omp-logo-img { width: 56px; height: 56px; object-fit: contain; border-radius: 50%; border: 2px solid rgba(200,146,42,0.4); background: #000; padding: 4px; }
+  .omp-partner-name { font-family: 'Bebas Neue',sans-serif; font-size: clamp(1.6rem,3vw,2.4rem); letter-spacing: 0.05em; color: var(--white); line-height: 1; }
+  .omp-partner-name span { color: var(--gold); }
+  .omp-desc { font-size: 0.9rem; font-weight: 300; color: var(--steel); line-height: 1.9; }
+  .omp-benefits { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-bottom: 4rem; }
+  .benefit-card { background: rgba(17,34,64,0.6); border: 1px solid rgba(143,163,191,0.1); border-radius: 4px; padding: 2rem; transition: border-color 0.3s; }
+  .benefit-card:hover { border-color: rgba(200,146,42,0.3); }
+  .benefit-title { font-family: 'DM Mono',monospace; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .benefit-desc { font-size: 0.87rem; font-weight: 300; color: var(--steel); line-height: 1.8; }
+  .omp-materials { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(143,163,191,0.1); border: 1px solid rgba(143,163,191,0.1); }
+  .material-item { background: var(--navy-mid); overflow: hidden; position: relative; cursor: pointer; transition: background 0.3s; }
+  .material-item::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; z-index: 1; }
+  .material-item:hover { background: rgba(30,58,95,0.7); }
+  .material-item:hover::before { transform: scaleX(1); }
+  .mat-img-wrap { height: 200px; overflow: hidden; }
+  .mat-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .material-item:hover .mat-img-wrap img { transform: scale(1.05); }
+  .material-body { padding: 1.5rem; }
+  .material-name { font-family: 'Bebas Neue',sans-serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.5rem; }
+  .material-desc { font-size: 0.8rem; color: var(--steel); line-height: 1.7; }
+
+  /* GALLERY */
+  #gallery { background: var(--navy-mid); position: relative; }
+  #gallery::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(42,127,200,0.5),transparent); }
+  .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .gallery-item { position: relative; overflow: hidden; border-radius: 3px; cursor: pointer; aspect-ratio: 1; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gal-overlay { position: absolute; inset: 0; background: rgba(10,22,40,0.55); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--gold); }
+  .gallery-item:hover .gal-overlay { opacity: 1; }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(5,12,22,0.97); z-index: 999; align-items: center; justify-content: center; }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 4px; }
+  .lb-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2.5rem; color: var(--white); cursor: pointer; background: none; border: none; line-height: 1; }
+  .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: var(--gold); cursor: pointer; background: none; border: none; padding: 1rem; }
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+  .lb-caption { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: 'DM Mono',monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); white-space: nowrap; }
+
+  /* CONTACT */
+  #contact { background: var(--navy); position: relative; }
+  #contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-detail { display: flex; gap: 1.2rem; margin-bottom: 2rem; align-items: flex-start; }
+  .contact-icon { width: 44px; height: 44px; background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.25); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-label { font-family: 'DM Mono',monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.3rem; }
+  .contact-value { font-size: 0.95rem; color: var(--white); line-height: 1.6; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label { font-family: 'DM Mono',monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel); }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(10,22,40,0.8); border: 1px solid rgba(143,163,191,0.2); border-radius: 2px; padding: 0.85rem 1rem; color: var(--white); font-family: 'DM Sans',sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.25s; width: 100%; -webkit-appearance: none; }
+  .form-group select option { background: var(--navy-mid); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(200,146,42,0.5); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit { display: inline-block; background: var(--gold); color: var(--navy); font-family: 'DM Mono',monospace; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem 2.5rem; border: none; border-radius: 2px; cursor: pointer; transition: background 0.25s,transform 0.2s; align-self: flex-start; }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  footer { background: var(--navy-mid); border-top: 1px solid rgba(143,163,191,0.1); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Bebas Neue',sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; color: var(--white); text-decoration: none; }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-family: 'DM Mono',monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--steel); }
+
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .omp-materials { grid-template-columns: repeat(2,1fr); }
+    .gallery-grid { grid-template-columns: repeat(3,1fr); }
+  }
+  @media (max-width: 860px) {
+    .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-mid); flex-direction: column; justify-content: center; gap: 2rem; padding: 2rem; transition: right 0.35s ease; border-left: 1px solid rgba(200,146,42,0.2); }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 1rem; }
+    .hamburger { display: flex; }
+    h1 { font-size: clamp(3rem,10vw,5rem); }
+    .caps-grid, .services-grid, .about-intro, .about-lower { grid-template-columns: 1fr; }
+    .omp-hero, .omp-benefits { grid-template-columns: 1fr; }
+    .omp-materials { grid-template-columns: 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .about-img-thumb { display: none; }
+  }
+  @media (max-width: 560px) { section { padding: 5rem 6%; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    Zeddy Mega <span>Global</span>
+    <small>RC: 1252363 &nbsp;|&nbsp; Port Harcourt, Nigeria</small>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#omp">OMP Partners</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO — img05: Zeddy hard hat at golden sunset cityscape -->
+<section id="home">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Oil &amp; Gas · Renewable Energy · Engineering</div>
+    <h1>Precision.<span class="highlight">Procured.</span>Perfected.</h1>
+    <p class="hero-sub">Zeddy Mega Global Services Ltd. delivers world-class industrial procurement, renewable energy, and engineering solutions tailored for Nigeria's toughest environments.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Our Services</a>
+      <a href="#contact" class="btn-outline">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES — img13: stacked pipes, img01: engineer on site, img02: team with tablets -->
+<section id="home-caps">
+  <div style="text-align:center;max-width:640px;margin:0 auto 1rem;">
+    <div class="section-tag">Building Excellence in Nigeria's Industrial Landscape</div>
+    <h2 class="section-title">Headquartered in Port Harcourt.<br/>Delivering Nationwide.</h2>
+    <p style="font-size:0.95rem;font-weight:300;color:var(--steel);line-height:1.9;margin-top:1rem;">Zeddy Mega Global Services Ltd. (RC: 1252363) is a premier multi-disciplinary service provider. We deliver world-class procurement and engineering solutions across the Oil &amp; Gas, Renewable Energy, and Construction sectors.</p>
+  </div>
+  <div class="caps-grid">
+    <div class="cap-card">
+      <img src="img13.jpg" alt="Industrial steel pipes" class="cap-img" />
+      <div class="cap-body">
+        <div class="cap-title">Oil &amp; Gas Procurement</div>
+        <p class="cap-desc">High-grade industrial steel piping, flanges, and valves for high-pressure systems — sourced directly from certified OEM manufacturers.</p>
+      </div>
+    </div>
+    <div class="cap-card">
+      <img src="img01.jpg" alt="Zeddy engineer reviewing blueprints on construction site" class="cap-img" />
+      <div class="cap-body">
+        <div class="cap-title">Engineering Construction</div>
+        <p class="cap-desc">Delivering precision-led civil and structural engineering projects from foundation to completion, on time and to specification.</p>
+      </div>
+    </div>
+    <div class="cap-card">
+      <img src="img02.jpg" alt="Zeddy Mega Global team" class="cap-img" />
+      <div class="cap-body">
+        <div class="cap-title">Renewable Energy</div>
+        <p class="cap-desc">Driving sustainable industrial growth through modern solar and wind infrastructure deployment across Nigeria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT — img03: team in warehouse (main), img02: smiling team (thumb) -->
+<section id="about">
+  <div class="about-intro">
+    <div class="about-img-wrap">
+      <img src="img03.jpg" alt="Zeddy Mega Global team in industrial warehouse" class="main-img" />
+      <div class="about-img-badge">Port Harcourt, Nigeria</div>
+      <img src="img02.jpg" alt="Zeddy team in orange vests" class="about-img-thumb" />
+    </div>
+    <div>
+      <div class="section-tag">About Zeddy Mega Global Services</div>
+      <h2 class="section-title">The Zeddy Advantage</h2>
+      <div class="gold-line"></div>
+      <p style="font-size:0.93rem;font-weight:300;color:var(--steel);line-height:1.9;margin-bottom:2rem;">Zeddy Mega Global Services Ltd. bridges the gap between global manufacturing excellence and local energy operations. We specialize in end-to-end sourcing of critical pipeline and industrial infrastructure, ensuring that major energy and construction projects across Nigeria are built with world-class materials.<br/><br/>By combining our deep understanding of the local operating environment with the manufacturing power of our global OEM partners, we provide high-integrity solutions that meet the most demanding technical standards of IOCs and independent operators alike.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">👷</div>
+          <div>
+            <div class="pillar-title">Qualified Workforce</div>
+            <p class="pillar-desc">Industry experts combining international field experience with specialized knowledge of the Niger Delta's unique operational landscape.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🛡</div>
+          <div>
+            <div class="pillar-title">HSE Excellence</div>
+            <p class="pillar-desc">Every project executed under strict Health, Safety, and Environment procedures to protect our people, assets, and the environment.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✅</div>
+          <div>
+            <div class="pillar-title">Strict QA/QC Protocols</div>
+            <p class="pillar-desc">Rigorous due diligence and quality inspections on every order to ensure 100% compliance with international standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- img04: pipeline laying alongside Triple-Q -->
+  <div class="about-lower">
+    <div>
+      <div class="section-tag">Our Core Framework</div>
+      <h2 class="section-title">The Triple-Q Commitment</h2>
+      <div class="gold-line"></div>
+      <div class="triple-q">
+        <div class="tq-item">
+          <div class="tq-letter">Q</div>
+          <div>
+            <div class="tq-title">Qualified Expertise</div>
+            <p class="tq-desc">Skilled engineering professionals who understand local regulatory and technical frameworks inside and out.</p>
+          </div>
+        </div>
+        <div class="tq-item">
+          <div class="tq-letter">Q</div>
+          <div>
+            <div class="tq-title">Quality Assurance</div>
+            <p class="tq-desc">Every component undergoes meticulous verification to ensure it matches exact client specifications and international standards.</p>
+          </div>
+        </div>
+        <div class="tq-item">
+          <div class="tq-letter">Q</div>
+          <div>
+            <div class="tq-title">Quick Reliability</div>
+            <p class="tq-desc">Highly optimized supply chains designed to keep your projects on schedule and under budget, every time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-radius:4px;overflow:hidden;">
+      <img src="img04.jpg" alt="Zeddy Mega Global pipeline installation crew" style="width:100%;height:100%;min-height:360px;object-fit:cover;display:block;" />
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES — img14: black pipes, img04: pipeline work, img01: construction engineer -->
+<section id="services">
+  <div style="max-width:640px;margin-bottom:4rem;">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:0.95rem;font-weight:300;color:var(--steel);line-height:1.9;">From upstream oil &amp; gas procurement to renewable energy deployment and civil engineering construction, our integrated service lines deliver value at every project phase.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="img14.jpg" alt="Black anti-corrosion coated steel pipes" class="service-img" />
+      <div class="service-body">
+        <div class="service-num">01</div>
+        <div class="service-title">Oil &amp; Gas Procurement</div>
+        <ul class="service-list">
+          <li>Seamless, ERW, LSAW &amp; SSAW steel pipes with anti-corrosion coatings</li>
+          <li>Weld Neck, Slip-on, Blind &amp; Orifice flanges for extreme pressures</li>
+          <li>Butt-weld &amp; forged fittings: elbows, tees, reducers, caps</li>
+          <li>Gate, ball, butterfly &amp; check valves, gaskets and fasteners</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="img04.jpg" alt="Zeddy crew in field with large diameter pipe" class="service-img" style="object-position:center top;" />
+      <div class="service-body">
+        <div class="service-num">02</div>
+        <div class="service-title">Renewable Energy Solutions</div>
+        <ul class="service-list">
+          <li>Procurement and expert installation of modern solar power systems</li>
+          <li>Wind energy infrastructure for industrial and off-grid locations</li>
+          <li>Energy efficiency consulting for corporate and industrial facilities</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="img01.jpg" alt="Zeddy engineer with blueprints on construction site" class="service-img" />
+      <div class="service-body">
+        <div class="service-num">03</div>
+        <div class="service-title">Civil &amp; Engineering Construction</div>
+        <ul class="service-list">
+          <li>Foundational works and structural steel fabrication</li>
+          <li>Civil construction for residential, industrial facilities &amp; processing plants</li>
+          <li>Project management adhering to local and international compliance codes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OMP — img06: Haihao facility exterior, img16: HH logo, img07: flanges, img08: fittings, img13: piping -->
+<section id="omp">
+  <div style="margin-bottom:3rem;">
+    <div class="section-tag">Strategic OEM Alliance</div>
+    <h2 class="section-title">Global Manufacturing Power.<br/>Local Project Execution.</h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="omp-hero">
+    <img src="img06.jpg" alt="Hebei Haihao Group manufacturing facility" class="omp-hero-img" />
+    <div class="omp-hero-text">
+      <div class="section-tag" style="margin-bottom:1rem;">Exclusive Nigeria Representative</div>
+      <div class="omp-logo-wrap">
+        <img src="img16.jpg" alt="Hebei Haihao Group HH logo" class="omp-logo-img" />
+        <div class="omp-partner-name">Hebei <span>Haihao</span> Group</div>
+      </div>
+      <p class="omp-desc">We are proud to be the authorized exclusive representative of Hebei Haihao Group in Nigeria — a premier global manufacturer of high-pressure steel piping components. Through this strategic alliance, we completely eliminate supply chain middle-men, giving Nigerian operators direct factory access. Their advanced R&amp;D, automated production lines, and rigorous testing labs deliver products compliant with ASME, API, ANSI, EN, and ISO standards.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;"><div class="section-tag">What This Partnership Brings to Your Projects</div></div>
+  <div class="omp-benefits">
+    <div class="benefit-card">
+      <div class="benefit-title">💰 Direct OEM Pricing</div>
+      <p class="benefit-desc">No third-party markups — direct factory pricing maximizes your procurement budget and improves project economics.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">📋 Certified Materials Only</div>
+      <p class="benefit-desc">Direct-from-factory mill test certificates (MTCs) and strict compliance with IOC technical specifications on every order.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">🏭 Massive Scalability</div>
+      <p class="benefit-desc">Manufacturing capacity to handle large-scale, high-pressure pipeline projects seamlessly, regardless of volume.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">⚙ Custom Engineering</div>
+      <p class="benefit-desc">Components custom-manufactured to match your project's unique metallurgical and structural specifications.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;"><div class="section-tag">Specialized OEM Materials Available via Zeddy Mega</div></div>
+  <div class="omp-materials">
+    <div class="material-item" onclick="openLb(0)">
+      <div class="mat-img-wrap"><img src="img07.jpg" alt="High-pressure precision flanges" /></div>
+      <div class="material-body">
+        <div class="material-name">High-Pressure Flanges</div>
+        <p class="material-desc">Engineered for severe pipeline and processing environments — Weld Neck, Blind, Slip-on, and Orifice types to international pressure ratings.</p>
+      </div>
+    </div>
+    <div class="material-item" onclick="openLb(3)">
+      <div class="mat-img-wrap"><img src="img08.jpg" alt="Butt-weld steel pipe fittings" /></div>
+      <div class="material-body">
+        <div class="material-name">Steel Fittings</div>
+        <p class="material-desc">Heavy-wall butt-welding &amp; forged elbows, tees, and reducers built for high-stress pipeline nodes.</p>
+      </div>
+    </div>
+    <div class="material-item" onclick="openLb(5)">
+      <div class="mat-img-wrap"><img src="img13.jpg" alt="Stacked industrial line pipes" /></div>
+      <div class="material-body">
+        <div class="material-name">Industrial Piping</div>
+        <p class="material-desc">Specialized line pipes with advanced anti-corrosion coatings for upstream and midstream applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — leftover images: img09, img10, img12, img11, img14, img15, img03, img01 -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="section-tag">Project &amp; Product Gallery</div>
+      <h2 class="section-title">Behind Every Project</h2>
+      <div class="gold-line" style="margin-bottom:0;"></div>
+    </div>
+    <p style="font-size:0.88rem;font-weight:300;color:var(--steel);max-width:380px;line-height:1.8;">A visual showcase of our OEM materials, Haihao manufacturing, and field operations across Nigeria. Click any image to view full size.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLb(0)">
+      <img src="img09.jpg" alt="Orifice weldneck flange ASTM A182" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(1)">
+      <img src="img10.jpg" alt="Large precision blind flange" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(2)">
+      <img src="img12.jpg" alt="Yellow zinc-coated flanges" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(3)">
+      <img src="img11.jpg" alt="Hebei Haihao worker inspecting pipe elbows" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(4)">
+      <img src="img14.jpg" alt="Black coated steel pipes at storage yard" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(5)">
+      <img src="img15.jpg" alt="Large diameter steel pipes stacked" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(6)">
+      <img src="img03.jpg" alt="Zeddy Mega Global team in industrial facility" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+    <div class="gallery-item" onclick="openLb(7)">
+      <img src="img01.jpg" alt="Zeddy engineer at construction site with blueprints" />
+      <div class="gal-overlay">⊕</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div>
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Let's Discuss Your Next Project</h2>
+      <div class="gold-line"></div>
+      <p style="font-size:0.95rem;font-weight:300;color:var(--steel);line-height:1.9;margin-bottom:3rem;">Let's discuss your technical specifications, procurement needs, or upcoming project. Our team is ready to deliver world-class solutions.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Head Office</div>
+          <div class="contact-value">Primegate Avenue, G. U. Ake Road,<br/>Port Harcourt, Rivers State, Nigeria</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+234 8099764699</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Business Hours</div>
+          <div class="contact-value">Monday – Friday &nbsp;|&nbsp; 8:00 AM – 5:00 PM (WAT)</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="john@company.com" />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" placeholder="Your Company Ltd." />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Required</label>
+          <select id="service">
+            <option value="" disabled selected>Select a service...</option>
+            <option>Oil &amp; Gas Procurement</option>
+            <option>Renewable Energy Solutions</option>
+            <option>Civil &amp; Engineering Construction</option>
+            <option>OEM / Haihao Materials</option>
+            <option>Technical Consultation</option>
+            <option>Submit an RFQ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Project Brief / Technical Specifications</label>
+          <textarea id="message" placeholder="Describe your project requirements, materials needed, quantities, or any technical specifications..."></textarea>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="form-submit" type="button" id="consultBtn">Request Consultation →</button>
+          <button class="btn-outline" type="button" id="rfqBtn" style="padding:1rem 1.8rem;">Submit RFQ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#home" class="footer-logo">Zeddy Mega <span>Global</span> Services Ltd.</a>
+  <div class="footer-copy">RC: 1252363 &nbsp;·&nbsp; Port Harcourt, Rivers State, Nigeria</div>
+  <div class="footer-copy" style="color:rgba(143,163,191,0.5);">© 2025 All rights reserved.</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLb()">×</button>
+  <button class="lb-prev" onclick="lbNav(-1)">&#8592;</button>
+  <img src="" alt="" id="lbImg" />
+  <button class="lb-next" onclick="lbNav(1)">&#8594;</button>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding = window.scrollY > 60 ? '0.7rem 5%' : '1.1rem 5%';
+  });
+
+  function flashBtn(btn, msg) {
+    const orig = btn.textContent;
+    btn.textContent = msg; btn.style.background = '#2a7fc8'; btn.style.color = '#f0ede6';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 3000);
+  }
+  document.getElementById('consultBtn').addEventListener('click', function(){ flashBtn(this,'Request Sent ✓'); });
+  document.getElementById('rfqBtn').addEventListener('click', function(){ flashBtn(this,'RFQ Submitted ✓'); });
+
+  const lbSrcs = [
+    { src:'img09.jpg', cap:'HH Orifice Weldneck Flange · ASTM A182 · ASME B16.35' },
+    { src:'img10.jpg', cap:'Large Diameter Blind Flange · High Pressure Rating' },
+    { src:'img12.jpg', cap:'Zinc-Coated Slip-On Flanges · Corrosion Protected' },
+    { src:'img11.jpg', cap:'Hebei Haihao Group · Pipe Elbows Production Floor' },
+    { src:'img14.jpg', cap:'Anti-Corrosion Coated Line Pipes · Ready for Dispatch' },
+    { src:'img15.jpg', cap:'Large Diameter Carbon Steel Pipes · Storage Yard' },
+    { src:'img03.jpg', cap:'Zeddy Mega Global · Engineering Team' },
+    { src:'img01.jpg', cap:'Zeddy Mega Global · On-Site Engineering Review' }
+  ];
+  let lbIdx = 0;
+  function openLb(i) {
+    lbIdx = i;
+    document.getElementById('lbImg').src = lbSrcs[lbIdx].src;
+    document.getElementById('lbCaption').textContent = lbSrcs[lbIdx].cap;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function lbNav(dir) {
+    lbIdx = (lbIdx + dir + lbSrcs.length) % lbSrcs.length;
+    document.getElementById('lbImg').src = lbSrcs[lbIdx].src;
+    document.getElementById('lbCaption').textContent = lbSrcs[lbIdx].cap;
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e){ if(e.target===this) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key==='Escape') closeLb();
+    if (e.key==='ArrowLeft') lbNav(-1);
+    if (e.key==='ArrowRight') lbNav(1);
+  });
+</script>
+</body>
+</html>
